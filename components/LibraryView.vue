@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="library-title">The Library of Libraries</h1>
+        <!-- <h1 class="library-title">The Library of Libraries</h1> -->
     </div>
     <div class="shelf" v-for="shelf in formattedLibrary" :key="shelf">
         <div class="shelf-title-box">

@@ -44,10 +44,10 @@ export const useViewStore = defineStore('view', ()=>{
             itemType: "Book",
             id: 'BookID',
             shelf: 'Repository', //Primary sort
-            useShelf: true,
+            useShelf: false,
             showShelf: true,
             bookend: 'Date of publication', //Secondary sort
-            useBookend: true,
+            useBookend: false,
             showBookend: true,
             height: 'Date of publication',
             useHeight: true,
@@ -81,23 +81,7 @@ export const useViewStore = defineStore('view', ()=>{
             bookCollectionProp2: 'Book',
             markCollectionProp1: 'Agent',
             markCollectionProp2: 'Book',
-        },
-        AgentLookUp: {
-            Agent: '',
-            Book: 'Marks.Books',
-            Mark: 'Marks'
-        },
-        BookLookUp: {
-            Agent: `Marks,0,Agents`,
-            Book: '',
-            Mark: 'Marks'
-        },
-        MarkLookUp: {
-            Agent: 'Agents',
-            Book: 'Books',
-            Mark: ''
-        },
-    
+        }
     })
 
     // INTERNAL GETTERS //
@@ -115,7 +99,7 @@ export const useViewStore = defineStore('view', ()=>{
     // EXTERNAL GETTERS //
     //Library Structure
     watch([libraryData.value, libraryDisplay],() => {
-        // formattedLibrary.value =  formatLibrary(libraryData.value, libraryDisplay); //Reactive when not testing
+        formattedLibrary.value =  formatLibrary(libraryData.value, libraryDisplay); //Reactive when not testing
     })
     //Item Height - Returns d3 Scale Function
     const itemHeight =  computed (() => {
@@ -143,21 +127,28 @@ export const useViewStore = defineStore('view', ()=>{
     function formatShelf(data, viewMode){
         return d3.flatGroup(d3.sort(data, d=> getIDP(d, viewMode)), d => getIDP(d, viewMode)); 
     }
+    function formatNullShelf(data, viewMode){
+        return d3.flatGroup(d3.sort(data, d=> getIDP(d, viewMode)), d => 'All Items'); 
+    }
     //Set Bookends
     function formatBookend(data, viewMode){
         return data
         .map(d => [d[0],d3.flatGroup(d3.sort(d[1], d=> getIDP(d, viewMode)), d=> getIDP(d, viewMode))]);  
+    }
+    function formatNullBookend(data, viewMode){
+        return data
+        .map(d => [d[0],d3.flatGroup(d3.sort(d[1], d=> getIDP(d, viewMode)), d=> 'All Items')]);  
     }
     //Combine Shelves & Bookend
     function formatLibrary(data, display) {
         //Shelves - Sort & Group Items by Shelf Category
         const shelfFormatData = display.view.useShelf 
         ? formatShelf(data, 'shelf') 
-        : formatShelf(data, 'id'); //Default
+        : formatNullShelf(data, 'id'); //Default
         //Bookends - Further Sort & Group Items by Bookend Category
         const shelfBookendFormatData = display.view.useBookend 
         ? formatBookend(shelfFormatData, 'bookend') 
-        : formatBookend(shelfFormatData, 'id'); //Default
+        : formatNullBookend(shelfFormatData, 'id'); //Default
         return shelfBookendFormatData
     }
 
@@ -285,6 +276,7 @@ export const useViewStore = defineStore('view', ()=>{
     function getIDP(item, viewMode) {
         let value;
         if(!item) return null
+        if(viewMode === 'not selected') return 'not selected'
         const viewSelection = libraryDisplay.view[viewMode]
         const viewModeType = libraryDisplay.viewType[viewMode]
         const itemType = itemTypeCheck(item)

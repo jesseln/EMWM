@@ -158,6 +158,33 @@ export const useReferenceStore = defineStore('reference', ()=>{
     colourMapFiltered.set('Agent', agentFilter)
     colourMapFiltered.set('Mark', markFilter)
     
+    //View Query Configurations //
+    // How many agents are in the collection? 
+    const agentsInCollection = ({
+        view: {
+            itemType: "Agent",
+            id: 'FemaleAgentID',
+            shelf: 'null', //Primary sort
+            useShelf: false,
+            showShelf: false,
+            bookend: 'null', //Secondary sort
+            useBookend: false,
+            showBookend: false,
+            height: 'Number of marks',
+            useHeight: true,
+            colour: 'Female agent status',
+            useColour: true,
+        },
+        viewType: {
+            id: 'Agent',
+            shelf: 'Agent',
+            bookend: 'Agent',
+            height: 'Agent',
+            colour: 'Mark',
+        }
+    })
+
+
 
     //Objects passed to Components 
     const libraryItemBundle = computed (() => {

@@ -1,10 +1,10 @@
 <template>
     <div class="library-wrapper">
         <!-- <YourShelf /> -->
-        <div class="shelf-separator-container"><div class="shelf-separator"></div></div>
+        <!-- <div class="shelf-separator-container"><div class="shelf-separator"></div></div> -->
         <!-- <ViewDesigner /> -->
-        <div class="shelf-separator-container"><div class="shelf-separator"></div></div>
-        <!-- <LibraryView /> -->
+        <!-- <div class="shelf-separator-container"><div class="shelf-separator"></div></div> -->
+        <LibraryView />
         <button ref="toTopButton" @click="scrollToTop" class="to-top-button">☝️</button>
     </div>
 </template>

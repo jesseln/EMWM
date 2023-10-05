@@ -8,8 +8,7 @@
           <!-- <LibraryContainer :agents="libraryStore.agents" :books="libraryStore.books" :marks="libraryStore.marks" /> -->
           <LibraryContainer :books="libraryStore.books"/>
         </div>
-        <LibraryMenu />
-        <button ref="toTopButton" @click="showAnnotations=!showAnnotations" class="annotation-button" :class="{ 'active': showAnnotations }">
+        <button @click="showAnnotations=!showAnnotations" class="annotation-button" :class="{ 'active': showAnnotations }">
             🖊️
         </button>
         <AnnotationPanel v-if="showAnnotations"/>

@@ -33,6 +33,11 @@
                 <h2 class="main-navbar-link dropbtn" >Read About the Collection</h2>
             </div>   
           </NuxtLink>
+          <NuxtLink to="/site-guide" activeClass="nav-active">
+            <div class="dropdown">
+                <h2 class="main-navbar-link dropbtn" >Site Guide</h2>
+            </div>   
+          </NuxtLink>
       </div>
       <div class="library-slot">
         <slot />
@@ -49,12 +54,12 @@
   // COMPOPSABLES
   const { updateCalulatedColumn } = useDatabase();
   
-//   libraryStore.getAgents();
-//   libraryStore.getBooks();
-//   libraryStore.getMarks();
+  libraryStore.getAgents();
+  libraryStore.getBooks();
+  libraryStore.getMarks();
   watchEffect(()=>{
     // parseDatabase(libraryStore.agents)
-    // parseDatabase(libraryStore.books)
+    parseDatabase(libraryStore.books)
     // parseDatabase(libraryStore.marks)
   })
 
