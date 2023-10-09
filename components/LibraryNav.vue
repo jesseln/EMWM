@@ -162,7 +162,7 @@
     </div>
     <div class="library-nav-colour-wrapper">
         <div class="library-nav-title-block">
-        <h3 class="library-nav-view">Colour Categories</h3>
+        <h3 class="library-nav-view-colour">Colour Categories</h3>
         </div>  
         <div  v-for="item in  colourSet" :key="item">
             <div class="library-nav-colour-item">
@@ -302,6 +302,7 @@ Object.entries(referenceStore.viewMap.get("Mark")).forEach(entry => {
     flex-flow: row wrap;
     justify-content: flex-start;
     gap: 2rem;
+    padding: 0 0 1rem;
 
 }
 
@@ -313,6 +314,7 @@ Object.entries(referenceStore.viewMap.get("Mark")).forEach(entry => {
     align-items: baseline;
 }
 .library-nav-colour-category{
+        align-self: center;
 	// position: absolute;
 	// bottom: 2px;
 	// left: 2px;
@@ -327,7 +329,7 @@ Object.entries(referenceStore.viewMap.get("Mark")).forEach(entry => {
 	border-radius: 20rem;
 }
 .library-nav-colour-label{
-    margin: 0.5rem 0 0 0;
+    align-self: center;
     font-family: 'Raleway', sans-serif;
 	font-size: 0.85rem;
 	font-weight: 450;
@@ -356,6 +358,18 @@ Object.entries(referenceStore.viewMap.get("Mark")).forEach(entry => {
     line-height: 1.25rem;
 	color: black;
     width: 60%;
+}
+
+.library-nav-view-colour{
+    align-self: center;
+    // margin: 0.5rem 0 0 0;
+    font-family: 'Raleway', sans-serif;
+	font-size: 0.85rem;
+	font-weight: 450;
+    letter-spacing: 0.05rem;
+    line-height: 1.25rem;
+	color: black;
+    width: 100%;
 }
 
 .categories{
