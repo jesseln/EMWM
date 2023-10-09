@@ -1,10 +1,11 @@
 <template>
+    <div class="library-nav-container">
     <div class="library-nav-wrapper">
         <div class="library-nav-dropdown">
             <div class="library-nav-title-block">
                 <h3 class="library-nav-view">Section</h3>
             </div>
-            <div class="aselect" :data-value="value" :data-list="viewMap">
+            <div class="aselect" >
                 <div ref="section" class="selector" @click="toggle('section')">
                     <div class="label">
                         <p v-if="libraryDisplay.viewType['shelf'] !== 'NotSelected'">
@@ -19,19 +20,19 @@
                     <div class="arrow" :class="{ expanded : visible }"></div>
                     <div class="categories" :class="{ hidden : !visible.section }">
                         <ul class="scrollable">
-                            <li :class="{ current : `NotSelected:${item.category}` === value }" v-for="item in sectionCategories.NotSelected" 
+                            <li :class="{ current : `NotSelected:${item.category}` === value.section }" v-for="item in sectionCategories.NotSelected" 
                                 @click="handleViewSelection('shelf', item.category, 'NotSelected')">
                                 Not Selected
                             </li>
-                            <li :class="{ current : `Agent:${item.category}` === value }" v-for="item in sectionCategories.Agent" 
+                            <li :class="{ current : `Agent:${item.category}` === value.section }" v-for="item in sectionCategories.Agent" 
                             @click="handleViewSelection('shelf', item.category, 'Agent')">
                                 Agent | {{ agentCategories[item.category]}} - {{ sectionCategories.Agent[item.category]['sortMethod']==='A'? 'A to Z': 'Low to High' }}
                             </li>
-                            <li :class="{ current : `Book:${item.category}` === value }" v-for="item in sectionCategories.Book" 
+                            <li :class="{ current : `Book:${item.category}` === value.section }" v-for="item in sectionCategories.Book" 
                             @click="handleViewSelection('shelf', item.category, 'Book')">
                                 Book | {{ bookCategories[item.category]}} - {{ sectionCategories.Book[item.category]['sortMethod']==='A'? 'A to Z': 'Low to High' }}
                             </li>
-                            <li :class="{ current : `Mark:${item.category}` === value }" v-for="item in sectionCategories.Mark" 
+                            <li :class="{ current : `Mark:${item.category}` === value.section }" v-for="item in sectionCategories.Mark" 
                             @click="handleViewSelection('shelf', item.category, 'Mark')">
                                 Mark | {{ markCategories[item.category] }} - {{ sectionCategories.Mark[item.category]['sortMethod']==='A'? 'A to Z': 'Low to High' }}
                             </li>
@@ -44,7 +45,7 @@
             <div class="library-nav-title-block">
                 <h3 class="library-nav-view">Sort</h3>
             </div>
-            <div class="aselect" :data-value="value" :data-list="viewMap">
+            <div class="aselect" >
                 <div ref="sort" class="selector" @click="toggle('sort')">
                     <div class="label">
                         <p v-if="libraryDisplay.viewType['bookend'] !== 'NotSelected'">
@@ -59,19 +60,19 @@
                     <div class="arrow" :class="{ expanded : visible }"></div>
                     <div class="categories" :class="{ hidden : !visible.sort }">
                         <ul class="scrollable">
-                            <li :class="{ current : `NotSelected:${item.category}` === value }" v-for="item in sortCategories.NotSelected" 
+                            <li :class="{ current : `NotSelected:${item.category}` === value.sort }" v-for="item in sortCategories.NotSelected" 
                                 @click="handleViewSelection('bookend', item.category, 'NotSelected')">
                                 Not Selected
                             </li>
-                            <li :class="{ current : `Agent:${item.category}` === value }" v-for="item in sortCategories.Agent" 
+                            <li :class="{ current : `Agent:${item.category}` === value.sort }" v-for="item in sortCategories.Agent" 
                             @click="handleViewSelection('bookend', item.category, 'Agent')">
                                 Agent | {{ agentCategories[item.category]}} - {{ sortCategories.Agent[item.category]['sortMethod']==='A'? 'A to Z': 'Low to High' }}
                             </li>
-                            <li :class="{ current : `Book:${item.category}` === value }" v-for="item in sortCategories.Book" 
+                            <li :class="{ current : `Book:${item.category}` === value.sort }" v-for="item in sortCategories.Book" 
                             @click="handleViewSelection('bookend', item.category, 'Book')">
                                 Book | {{ bookCategories[item.category]}} - {{ sortCategories.Book[item.category]['sortMethod']==='A'? 'A to Z': 'Low to High' }}
                             </li>
-                            <li :class="{ current : `Mark:${item.category}` === value }" v-for="item in sortCategories.Mark" 
+                            <li :class="{ current : `Mark:${item.category}` === value.sort }" v-for="item in sortCategories.Mark" 
                             @click="handleViewSelection('bookend', item.category, 'Mark')">
                                 Mark | {{ markCategories[item.category] }} - {{ sortCategories.Mark[item.category]['sortMethod']==='A'? 'A to Z': 'Low to High' }}
                             </li>
@@ -82,9 +83,9 @@
         </div>
         <div class="library-nav-dropdown">
             <div class="library-nav-title-block">
-                <h3 class="library-nav-view">Height</h3>
+                <h3 class="library-nav-view">Proportions</h3>
             </div>
-            <div class="aselect" :data-value="value" :data-list="viewMap">
+            <div class="aselect" >
                 <div ref="height" class="selector" @click="toggle('height')">
                     <div class="label">
                         <p v-if="libraryDisplay.viewType['height'] !== 'NotSelected'">
@@ -98,19 +99,19 @@
                     <div class="arrow" :class="{ expanded : visible }"></div>
                     <div class="categories" :class="{ hidden : !visible.height }">
                         <ul class="scrollable">
-                            <li :class="{ current : `NotSelected:${item.category}` === value }" v-for="item in heightCategories.NotSelected" 
+                            <li :class="{ current : `NotSelected:${item.category}` === value.height }" v-for="item in heightCategories.NotSelected" 
                                 @click="handleViewSelection('height', item.category, 'NotSelected')">
                                 Not Selected
                             </li>
-                            <li :class="{ current : `Agent:${item.category}` === value }" v-for="item in heightCategories.Agent" 
+                            <li :class="{ current : `Agent:${item.category}` === value.height }" v-for="item in heightCategories.Agent" 
                             @click="handleViewSelection('height', item.category, 'Agent')">
                                 Agent | {{ agentCategories[item.category]}}
                             </li>
-                            <li :class="{ current : `Book:${item.category}` === value }" v-for="item in heightCategories.Book" 
+                            <li :class="{ current : `Book:${item.category}` === value.height }" v-for="item in heightCategories.Book" 
                             @click="handleViewSelection('height', item.category, 'Book')">
                                 Book | {{ bookCategories[item.category]}}
                             </li>
-                            <li :class="{ current : `Mark:${item.category}` === value }" v-for="item in heightCategories.Mark" 
+                            <li :class="{ current : `Mark:${item.category}` === value.height }" v-for="item in heightCategories.Mark" 
                             @click="handleViewSelection('height', item.category, 'Mark')">
                                 Mark | {{ markCategories[item.category] }}
                             </li>
@@ -123,7 +124,7 @@
             <div class="library-nav-title-block">
                 <h3 class="library-nav-view">Colour</h3>
             </div>
-            <div class="aselect" :data-value="value" :data-list="viewMap">
+            <div class="aselect" >
                 <div ref="colour" class="selector" @click="toggle('colour')">
                     <div class="label">
                         <p v-if="libraryDisplay.viewType['colour'] !== 'NotSelected'">
@@ -137,19 +138,19 @@
                     <div class="arrow" :class="{ expanded : visible }"></div>
                     <div class="categories" :class="{ hidden : !visible.colour }">
                         <ul class="scrollable">
-                            <li :class="{ current : `NotSelected:${item.category}` === value }" v-for="item in colourCategories.NotSelected" 
+                            <li :class="{ current : `NotSelected:${item.category}` === value.colour }" v-for="item in colourCategories.NotSelected" 
                                 @click="handleViewSelection('colour', item.category, 'NotSelected')">
                                 Not Selected
                             </li>
-                            <li :class="{ current : `Agent:${item.category}` === value }" v-for="item in colourCategories.Agent" 
+                            <li :class="{ current : `Agent:${item.category}` === value.colour }" v-for="item in colourCategories.Agent" 
                             @click="handleViewSelection('colour', item.category, 'Agent')">
                                 Agent | {{ agentCategories[item.category]}}
                             </li>
-                            <li :class="{ current : `Book:${item.category}` === value }" v-for="item in colourCategories.Book" 
+                            <li :class="{ current : `Book:${item.category}` === value.colour }" v-for="item in colourCategories.Book" 
                             @click="handleViewSelection('colour', item.category, 'Book')">
                                 Book | {{ bookCategories[item.category]}}
                             </li>
-                            <li :class="{ current : `Mark:${item.category}` === value }" v-for="item in colourCategories.Mark" 
+                            <li :class="{ current : `Mark:${item.category}` === value.colour }" v-for="item in colourCategories.Mark" 
                             @click="handleViewSelection('colour', item.category, 'Mark')">
                                 Mark | {{ markCategories[item.category] }}
                             </li>
@@ -159,6 +160,18 @@
             </div>
         </div>
     </div>
+    <div class="library-nav-colour-wrapper">
+        <div class="library-nav-title-block">
+        <h3 class="library-nav-view">Colour Categories</h3>
+        </div>  
+        <div  v-for="item in  colourSet" :key="item">
+            <div class="library-nav-colour-item">
+                <div class="library-nav-colour-category" :style="{ background: itemColour(item)}"></div>
+                <h2 class="library-nav-colour-label">{{item}}</h2>
+            </div>
+        </div>
+    </div>
+</div>
 </template>
 
 <script setup>
@@ -171,6 +184,7 @@ const { libraryData,
         formattedLibrary, 
         itemHeight,
         itemColour, 
+        colourSet,
         viewHeightBounds, 
         viewColourSet } = storeToRefs(viewStore)
         const { parseDatabase,
@@ -185,6 +199,9 @@ const { categoryMap,
         invCategoryMap, 
         colourMapFiltered,
         scales } = storeToRefs(referenceStore)
+
+
+        console.log('Array.from colourSet',viewStore.getColourSet)
 
 const NotSelectedCategories = ref(referenceStore.categoryMap.get("NotSelected"))
 const agentCategories = ref(referenceStore.categoryMap.get("Agent"))
@@ -230,8 +247,12 @@ Object.entries(referenceStore.viewMap.get("Mark")).forEach(entry => {
 
 
     const value = computed (()=> {
-        console.log('value',`${viewStore.libraryDisplay.viewType['shelf']}:${[viewStore.libraryDisplay.view['shelf']]}`)
-        return `${viewStore.libraryDisplay.viewType['shelf']}:${[viewStore.libraryDisplay.view['shelf']]}`
+        return { 
+            section: `${viewStore.libraryDisplay.viewType['shelf']}:${[viewStore.libraryDisplay.view['shelf']]}`,
+            sort: `${viewStore.libraryDisplay.viewType['bookend']}:${[viewStore.libraryDisplay.view['bookend']]}`,
+            height: `${viewStore.libraryDisplay.viewType['height']}:${[viewStore.libraryDisplay.view['height']]}`,
+            colour: `${viewStore.libraryDisplay.viewType['colour']}:${[viewStore.libraryDisplay.view['colour']]}`
+    }
     })
 
     const visible = reactive({
@@ -239,8 +260,8 @@ Object.entries(referenceStore.viewMap.get("Mark")).forEach(entry => {
         sort: false,
         height: false,
         colour: false,
-
     })
+
     const section = ref(false)
     const sort = ref(false)
     const height = ref(false)
@@ -260,13 +281,60 @@ Object.entries(referenceStore.viewMap.get("Mark")).forEach(entry => {
 </script>
 
 <style lang="scss" scoped>
-.library-nav-wrapper{
+
+.library-nav-container{
     min-width: 10rem;
-    margin: 1rem 0 3rem;
+    margin: 1rem var(--sideMargins) 3rem;
+    display: grid;
+    grid-template-rows: auto auto;
+
+}
+.library-nav-wrapper{
+    grid-row: 1 / 2;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
 
+}
+.library-nav-colour-wrapper{
+    grid-row: 2 / 3;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    gap: 2rem;
+
+}
+
+.library-nav-colour-item{
+    // position: relative;
+    display: flex;
+    flex-direction: row;
+    // align-content: center;
+    align-items: baseline;
+}
+.library-nav-colour-category{
+	// position: absolute;
+	// bottom: 2px;
+	// left: 2px;
+	padding: 0.5rem;
+    margin:  0 0.5rem; 
+    // display: flex;
+    // flex-wrap: nowrap;
+    // flex-direction: column;
+    // justify-content: flex-start;
+    // align-content: center;
+    // align-items: center;
+	border-radius: 20rem;
+}
+.library-nav-colour-label{
+    margin: 0.5rem 0 0 0;
+    font-family: 'Raleway', sans-serif;
+	font-size: 0.85rem;
+	font-weight: 450;
+    letter-spacing: 0.05rem;
+    line-height: 1.25rem;
+	color: black;
+    width: 100%;
 }
 .library-nav-dropdown{
     display: flex;
@@ -339,7 +407,7 @@ Object.entries(referenceStore.viewMap.get("Mark")).forEach(entry => {
 		}
 
         .selector:hover {
-            background: #fff281;
+            background:#f7e8f777;
         }
 
 		ul {
@@ -358,7 +426,7 @@ Object.entries(referenceStore.viewMap.get("Mark")).forEach(entry => {
             // top: 0;
             background: #fff;
             // display: block;
-            max-height: 90vh;
+            max-height: 60vh;
             overflow: auto;
 		}
 		li {
@@ -368,14 +436,14 @@ Object.entries(referenceStore.viewMap.get("Mark")).forEach(entry => {
             cursor: pointer;
 			&:hover {
 				// color: white;
-				background: #fff28177;
+				background:#f7e8f777;
 			}
 		}
 		.current {
 			font-size: 0.8rem;
             font-weight: 500;
             color:  black;
-            background: #fff28177;
+            background: #f7e8f777;
 		}
 		.hidden {
 			visibility: hidden;

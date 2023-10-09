@@ -15,7 +15,6 @@ export const useViewStore = defineStore('view', ()=>{
 
     // LIBRARY STATE OBJECT//
     const libraryData = ref({})
-    const unformattedData = ref({})
 
     const heightCategory = {
         logarithmic: ['Number of marks', 'Number of book images', 'Size'],
@@ -45,7 +44,6 @@ export const useViewStore = defineStore('view', ()=>{
             bookCollectionProp2: 'Number of marks',
             markCollectionProp1: 'Female agent name',
             markCollectionProp2: 'Title',
-
         },
         viewType: {
             id: 'Book',
@@ -63,6 +61,12 @@ export const useViewStore = defineStore('view', ()=>{
             bookCollectionProp2: 'Book',
             markCollectionProp1: 'Agent',
             markCollectionProp2: 'Book',
+        },
+        pageText: {
+            queryType: 'Agents ',
+            queryBreadcrumb: '/ How many agents are in the collection ?',
+            libraryTypeTitle: 'The Agents',
+            libraryTypeSubtitle: 'of the libraries',
         }
     })
 
@@ -70,13 +74,16 @@ export const useViewStore = defineStore('view', ()=>{
     const formattedLibrary = ref([])
     const itemHeight = ref()
     const itemColour = ref()
+    const colourSet = ref()
 
     watch([libraryData, libraryDisplay],() => {
         formattedLibrary.value =  formatLibrary(libraryData.value); //Reactive when not testing
         //Item Height - Returns d3 Scale Function
         itemHeight.value = formatHeight(libraryData.value);
         //Item Colour - Returns d3 Scale Function
-        itemColour.value = formatColour(libraryData.value);
+        itemColour.value = formatColour();
+        //Colour Categories
+        colourSet.value = getColourSet.value //Included here to prevent computed from firing before library.data is returned
     })
 
 
@@ -89,7 +96,7 @@ export const useViewStore = defineStore('view', ()=>{
 
     //Get unique values in colour set
     const getColourSet = computed (() => {
-    return processColourSet(libraryData.value)
+        return processColourSet(libraryData.value)
     })
     
     // EXTERNAL GETTERS //
@@ -174,14 +181,14 @@ export const useViewStore = defineStore('view', ()=>{
     }
 
     // HANDLE COLOUR //
-    function formatColour(data){
+    function formatColour(){
         if(libraryDisplay.view.colour !== "Not Selected"){
             const viewMode = 'colour'
             const viewSelection = libraryDisplay.view[viewMode]
             const viewModeType = libraryDisplay.viewType[viewMode]
             const colourFunction = viewMap.get(viewModeType)[viewSelection].func
             const colourScheme = viewMap.get(viewModeType)[viewSelection].scheme
-            const colourScale = colourBandscale(processColourSet(data))
+            const colourScale = colourBandscale(getColourSet.value)
             const colourFunc = d3[colourFunction](d3[colourScheme]) //Applies colour functions and schemes from Object. Domain defaults to [0,1]
             return (
                     (value) => colourFunc(colourScale(value)) //Returns nested scale function after applying band function (IIFE)
@@ -192,7 +199,7 @@ export const useViewStore = defineStore('view', ()=>{
     }
 
     function colourBandscale(colourSet){
-        console.log('Array.from colourSet',Array.from(colourSet))
+        // console.log('Array.from colourSet',Array.from(colourSet))
         return d3.scaleBand()
                     .domain(Array.from(colourSet)) //Range defaults to [0,1]
     }
@@ -314,7 +321,8 @@ export const useViewStore = defineStore('view', ()=>{
                 formattedLibrary, 
                 heightCategory,
                 itemHeight,
-                itemColour, 
+                itemColour,
+                colourSet, 
                 viewHeightBounds, 
                 viewColourSet,
                 parseDatabase,
@@ -322,3 +330,5 @@ export const useViewStore = defineStore('view', ()=>{
                 getIDP,
                 itemTypeCheck  }
   })
+
+

@@ -1,8 +1,8 @@
 <template>
     <div>
     <div class="query-box">
-        <h1 class="query-type">Agents </h1>
-        <h2 class="query-breadcrumb">/ How many agents are in the collection ?</h2>
+        <h1 class="query-type"> {{ libraryDisplay.pageText.queryType }} </h1>
+        <h2 class="query-breadcrumb"> {{ libraryDisplay.pageText.queryBreadcrumb }}</h2>
         <h2 class="query-breadcrumb">Total Items: {{ dataSize }}</h2>
     </div>
     <div class="shelf-separator-container"><div class="shelf-separator"></div></div>
@@ -10,8 +10,8 @@
         <LibraryNav />
     </div>
     <div class="library-type-title-box">
-        <h1 class="library-type-title">The Agents</h1>
-        <p class="library-type-subtitle">of the libraries</p>
+        <h1 class="library-type-title">{{ libraryDisplay.pageText.libraryTypeTitle }}</h1>
+        <p class="library-type-subtitle">{{ libraryDisplay.pageText.libraryTypeSubtitle }}</p>
     </div>
     <div v-if="dataCheck">
         <LibraryView />
@@ -77,6 +77,7 @@ const { categoryMap,
     console.log("query check", setQueryView.view.itemType)
     Object.assign(viewStore.libraryDisplay.view, setQueryView.view)
     Object.assign(viewStore.libraryDisplay.viewType, setQueryView.viewType)
+    Object.assign(viewStore.libraryDisplay.pageText, setQueryView.pageText)
 
 //    console.log('library display', viewStore.libraryDisplay)
 //    console.log('computed ', formattedLibrary)

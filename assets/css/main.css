@@ -25,6 +25,7 @@
     /* FIXED WIDTHS AND BORDERS */
     --mediaWidth: 600px;
     --sideMargins: clamp(2rem, 6vw, 5rem);
+    --libraryMargins: clamp(4rem, 12vw, 10rem);
     --borderWidth: 3px;
     --borderWidth-S: 1.75px;
 
@@ -51,7 +52,7 @@ body {
 	grid-template-areas: 
 		"header header header header"
 		"navbar navbar navbar navbar"
-		"margin-left library-area library-area margin-right"
+		"library-area library-area library-area library-area"
 		"footer footer footer footer";
 	column-gap: clamp(1rem,3vw,3rem);
 	position: relative;
@@ -232,8 +233,8 @@ body {
 }
 
 .shelf{
-	/* margin: 0, 5px;
-	display: flex;
+	margin: 0 var(--libraryMargins);
+	/* display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
 	justify-content: flex-start;
@@ -243,17 +244,17 @@ body {
 }
 
 .shelf-separator-container{
-	/* margin: 0 0 2rem 0; */
+	margin: 0 var(--sideMargins) 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 .shelf-separator{
-	border-top:1px solid rgb(231, 231, 231);
-	border-bottom:1px solid rgb(231, 231, 231);
+	border-top: 1px solid rgb(231, 231, 231);
+	border-bottom: 1px solid rgb(231, 231, 231);
 	background-color: rgb(182, 182, 182);
-	box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 12px 0px;
-	clip-path: inset(-10px -100px -100px 0px);
+	/* box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 12px 0px; */
+	/* clip-path: inset(-10px -100px -100px 0px); */
 	height: 0.125rem;
 	width: 100%;
 }
@@ -341,7 +342,7 @@ body {
 }
 
 .library-type-title-box{
-	margin: 0 0 3rem;
+	margin: 0 var(--libraryMargins) 3rem;
 }
 
 .library-type-title{
@@ -365,7 +366,7 @@ body {
 
 
 .query-box{
-    margin: 0.5rem 0;
+    margin: 0.5rem var(--sideMargins);
     display: flex;
     flex-flow: row wrap;
     
