@@ -7,7 +7,7 @@
     </div>
     <div class="shelf-separator-container"><div class="shelf-separator"></div></div>
     <div class="nav-div">
-        <LibraryNav />
+        <!-- <LibraryNav /> -->
     </div>
     <div class="library-type-title-box">
         <h1 class="library-type-title">{{ libraryDisplay.pageText.libraryTypeTitle }}</h1>
@@ -81,15 +81,15 @@ const { categoryMap,
 
 //    console.log('library display', viewStore.libraryDisplay)
 //    console.log('computed ', formattedLibrary)
-   console.log('computed length', formattedLibrary.length !== undefined)
+//    console.log('computed length', formattedLibrary.length !== undefined)
    
-    let dataCheck = computed (() => {
+   const dataCheck = computed (() => {
         return formattedLibrary.value.length !== undefined
     })
 
     watchEffect(()=>{
         parseDatabase(libraryStore[viewStore.libraryDisplay.view.itemType])
-        console.log('watchEffect',formattedLibrary)
+        // console.log('watchEffect',formattedLibrary)
     })
 
     // Error Page

@@ -2,7 +2,7 @@
     <div >
     <!-- <div class="shelf-separator-container"><div class="shelf-separator"></div></div> -->
 
-    <!-- <NuxtPage :setQuery="agent01" /> -->
+    <NuxtPage :setQuery="agent01" />
 
     <div v-if="viewStore.formattedLibrary.length">
         <LibraryView />
