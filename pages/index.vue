@@ -1,6 +1,6 @@
 <template>
     <div >
-        <h1>Intro the the Collection</h1>
+        <h1>Intro to the site</h1>
     </div>
    
     
