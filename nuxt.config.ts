@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@pinia/nuxt',
     '@nuxt/devtools',
+    '@nuxtjs/eslint-module',
     '@nuxtjs/supabase',
     'floating-vue/nuxt',
     'nuxt-icons',
