@@ -7,7 +7,7 @@
     </div>
     <div class="shelf-separator-container"><div class="shelf-separator"></div></div>
     <div class="nav-div">
-        <!-- <LibraryNav /> -->
+        <LibraryNav />
     </div>
     <div class="library-type-title-box">
         <h1 class="library-type-title">{{ libraryDisplay.pageText.libraryTypeTitle }}</h1>

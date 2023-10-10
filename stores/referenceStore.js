@@ -1,5 +1,4 @@
 import { storeToRefs } from "pinia";
-import { TRUE } from "sass";
 
 export const useReferenceStore = defineStore('reference', ()=>{
     const { invertObject } = useUtils();
@@ -141,7 +140,7 @@ export const useReferenceStore = defineStore('reference', ()=>{
             ['Location other']: {sortMethod: 'A', category: 'Location other', func: 'scaleOrdinal', scheme: 'schemeSet3',useColour: true, useSection: true, useOrder: true, useHeight: false},
             ['Added text type']: {sortMethod: 'A', category: 'Added text type', func: 'scaleOrdinal', scheme: 'schemeAccent',useColour: true, useSection: true, useOrder: true, useHeight: false},
             ['Drawing type']: {sortMethod: 'A', category: 'Drawing type', func: 'scaleOrdinal', scheme: 'schemeDark2', useColour: true, useSection: true, useOrder: true, useHeight: false},
-            ['Graffiti type']: {sortMethod: 'A', category: 'Graffiti type', func: 'scaleOrdinal', scheme: 'schemeDark2', useColour: TRUE, useSection: true, useOrder: true, useHeight: false},
+            ['Graffiti type']: {sortMethod: 'A', category: 'Graffiti type', func: 'scaleOrdinal', scheme: 'schemeDark2', useColour: true, useSection: true, useOrder: true, useHeight: false},
             ['Agent role']: {sortMethod: 'A', category: 'Agent role', func: 'scaleOrdinal', scheme: 'schemeAccent',useColour: true},
             ['Other notes']: {sortMethod: 'A', category: 'Other notes', useColour: false, useSection: true, useOrder: true, useHeight: false},
     })
