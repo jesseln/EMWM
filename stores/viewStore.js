@@ -76,7 +76,10 @@ export const useViewStore = defineStore('view', ()=>{
     const itemColour = ref()
     const colourSet = ref()
 
+    
+
     watch([libraryData, libraryDisplay],() => {
+        if(libraryData.value.length !== undefined){
         formattedLibrary.value =  formatLibrary(libraryData.value); //Reactive when not testing
         //Item Height - Returns d3 Scale Function
         itemHeight.value = formatHeight(libraryData.value);
@@ -84,6 +87,7 @@ export const useViewStore = defineStore('view', ()=>{
         itemColour.value = formatColour();
         //Colour Categories
         colourSet.value = getColourSet.value //Included here to prevent computed from firing before library.data is returned
+        }
     })
 
 
