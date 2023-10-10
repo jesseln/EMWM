@@ -372,9 +372,7 @@ Object.entries(referenceStore.viewMap.get("Mark")).forEach(entry => {
     width: 100%;
 }
 
-.categories{
 
-}
 .aselect {
     min-width: 15rem;
     margin: 20px auto;
